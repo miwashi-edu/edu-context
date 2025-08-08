@@ -1,0 +1,1 @@
+export {default as AnyComponent} from './AnyComponent.jsx';

@@ -1,0 +1,54 @@
+/* ===========================
+   GLOBAL VARIABLES
+   =========================== */
+:global(:root) {
+    --font-family-base: 'Inter', system-ui, sans-serif;
+    --font-size-base: 16px;
+    --spacing-unit: 8px;
+
+    /* Light theme defaults */
+    --bg-color: white;
+    --text-color: black;
+}
+
+/* ===========================
+   GLOBAL CSS
+   =========================== */
+:global(html),
+:global(body) {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+    box-sizing: border-box;
+}
+
+/* Optional: utility classes */
+:global(.text-center) {
+    text-align: center;
+}
+
+:global(.mt-1) { margin-top: calc(var(--spacing-unit) * 1); }
+:global(.mt-2) { margin-top: calc(var(--spacing-unit) * 2); }
+:global(.mt-3) { margin-top: calc(var(--spacing-unit) * 3); }
+
+/* ===========================
+   THEME SCOPES (scoped to module)
+   =========================== */
+.light {
+    --bg-color: white;
+    --text-color: black;
+}
+
+.dark {
+    --bg-color: #222;
+    --text-color: white;
+}
