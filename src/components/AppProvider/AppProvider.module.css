@@ -1,0 +1,76 @@
+.layerContainer {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+/* Concern + down arrow column */
+.concernWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.layerLeft {
+    min-width: 160px;
+    max-width: 220px;
+    padding: 12px 14px;
+    background: #1f2937;
+    color: #ffffff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.layerArrow {
+    align-self: center;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 16px solid #9ca3af;
+}
+
+.layerRight {
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    line-height: 1.4;
+}
+
+/* ▼ arrow under concern */
+.downArrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid #9ca3af;
+}
+
+/* existing classes ... */
+
+.md :where(p) { margin: 0 0 0.5rem; }
+.md :where(ul,ol) { margin: 0.25rem 0 0.5rem 1.25rem; }
+.md :where(li) { margin: 0.125rem 0; }
+.md :where(strong) { font-weight: 600; }
+.md :where(a) { text-decoration: underline; }
+.codeInline {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: #f3f4f6;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+.codeBlock {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    background: #0b1020;
+    color: #e5e7eb;
+    border-radius: 8px;
+    overflow: auto;
+}

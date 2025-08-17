@@ -1,0 +1,31 @@
+[
+  {
+    "concern": "Configuration",
+    "description": "**Loads app-wide configuration**:\n\n- Environment variables\n- API endpoints\n- Default settings\n\nℹ️ This provider must run *first*, because everything else depends on it."
+  },
+  {
+    "concern": "Auth",
+    "description": "**Manages user identity**:\n\n- Restores sessions and tokens\n- Handles login/logout\n- Exposes the current user object\n\nDepends on **Configuration** for auth endpoints and settings."
+  },
+  {
+    "concern": "API",
+    "description": "**Sets up the API client**:\n\n- Base URL from `Configuration`\n- Attaches authentication tokens from `Auth`\n- Handles retries and errors\n\nThis layer abstracts server communication for the rest of the app."
+  },
+  {
+    "concern": "Settings",
+    "description": "**Provides user preferences**:\n\n- Locale (🌐 language)\n- Theme choice (light/dark)\n- Accessibility options\n\nMay fetch and merge preferences from both local storage and server via **API**."
+  },
+  {
+    "concern": "Features",
+    "description": "**Controls feature flags & experiments**:\n\n- Enables/disables experimental features\n- Targets by user, group, or environment\n- Can use `Settings` (overrides) and `Auth` (user targeting)\n\nAllows rolling out new features safely."
+  },
+  {
+    "concern": "Styles",
+    "description": "**Provides design tokens & theming**:\n\n- Colors, spacing, typography\n- Global CSS resets and utility styles\n- Responds to `Settings` (e.g., dark mode)\n\nEnsures the UI has a consistent look and feel."
+  },
+  {
+    "concern": "App",
+    "description": "**Your application UI**:\n\n- Screens, routes, and feature components\n- Consumes everything provided by the layers above\n\nThis is the *end consumer* of the provider chain.",
+    "noArrow": true
+  }
+]
