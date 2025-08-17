@@ -1,1 +1,31 @@
 # context
+
+`useContext` was added to `React` in version 16.8, released 2019.
+
+Before that, you had to use the `<MyContext.Consumer>` render-prop API to read from a context.
+
+useContext was one of the first built-in hooks (useState, useEffect, useReducer, useContext, etc.) added in 16.8.
+
+The purpose of useContext is to read values from a React Context directly inside a function component,
+without needing to pass props down manually or use the `<Context.Consumer>` render-prop.
+
+## Why it matters
+
+1. Avoids prop drilling (passing props through layers of components that don’t need them).
+2. Simplifies code — one line instead of a render-prop wrapper.
+3. Auto-subscribes to the context, so the component re-renders when the value changes.
+
+## Example
+
+### Before hooks (render prop):
+```jsx
+<MyContext.Consumer>
+    {value => <p>{value}</p>}
+</MyContext.Consumer>
+```
+
+### With useContext:
+```jsx
+const value = useContext(MyContext);
+return <p>{value}</p>;
+```

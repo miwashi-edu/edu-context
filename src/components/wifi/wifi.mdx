@@ -1,0 +1,94 @@
+# context
+A context is information you want to share.
+For example in a hotel lobby, they want to provide the wifi password to a guest.
+
+```jsx
+import { createContext } from 'react';
+export const WifiPasswordContext = createContext();
+```
+
+Now we have a place where to store the password. We only need a person writing that password down.
+
+```jsx
+import { useState } from 'react';
+import {WifiPasswordContext} from "./WifiPasswordContext";
+
+const WifiPasswordProvider = ({ children }) => {
+    const [wifiPassword, setWifiPassword] = useState('secret');
+    return (
+        <WifiPasswordContext.Provider value={{ wifiPassword, setWifiPassword }}>
+            {children}
+        </WifiPasswordContext.Provider>
+    );
+};
+export default WifiPasswordProvider;
+```
+
+To use it, we only have to wrap the provider, around the one needing the password,
+
+```jsx
+<WifiPasswordProvider>
+    <Guest/>
+    <Technician/>
+</WifiPasswordProvider>
+```
+And the Guest has been provided!
+
+```jsx
+import { useContext } from 'react';
+import { WifiPasswordContext } from './WifiPasswordContext';
+
+const Guest = () => {
+  const { wifiPassword, setWifiPassword } = useContext(WifiPasswordContext);
+
+  return (
+    <div>
+      <p>The Wi-Fi password is: {wifiPassword}</p>
+    </div>
+  );
+};
+```
+
+And the Technician has been provided!
+
+```jsx
+import { useContext } from 'react';
+import { WifiPasswordContext } from './WifiPasswordContext';
+
+const Technician = () => {
+  const { wifiPassword, setWifiPassword } = useContext(WifiPasswordContext);
+
+  return (
+    <div>
+      <p>The Wi-Fi password is: {wifiPassword}</p>
+      <button onClick={() => setWifiPassword('new-secret')}>
+        Change Password
+      </button>
+    </div>
+  );
+};
+```
+
+```jsx
+export const AppProvider = ({ children }) => {
+    const [config, setConfig] = useState(defaultConfig);
+    const [settings, setSettings] = useState(defaultSettings);
+    const [features, setFeatures] = useState(defaultFeatures);
+
+    useEffect(() => { fetchAndSet(setConfig, setSettings, setFeatures); }, []);
+
+    return (
+        <ConfigurationContext.Provider value={config}>
+            <AuthProvider>
+                <ApiProvider>
+                    <SettingsContext.Provider value={settings}>
+                        <FeaturesContext.Provider value={features}>
+                            <StylesProvider>{children}</StylesProvider>
+                        </FeaturesContext.Provider>
+                    </SettingsContext.Provider>
+                </ApiProvider>
+            </AuthProvider>
+        </ConfigurationContext.Provider>
+    );
+};
+```

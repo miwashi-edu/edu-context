@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { MyContext } from '../../context';
+import { MyContext } from '../../context/MyContext.jsx';
 
 const AnyComponent = () => {
     const { value, setValue } = useContext(MyContext);

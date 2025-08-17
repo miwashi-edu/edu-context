@@ -1,0 +1,32 @@
+In most React/FE project structures, a foundation/ **directory** is used for things that are `core building blocks` of the
+application — pieces that everything else depends on, but that don’t depend on higher-level “features.”
+
+Think of it as the **base layer** in a layered architecture.
+
+---
+### Typical contents of foundation/
+1. `Theme` / styling system (colors, typography, spacing tokens, design system primitives).
+2. `UI primitives` (buttons, inputs, layout components before feature-specific components).
+3. `Utilities` / hooks (e.g. useMediaQuery, useLocalStorage).
+4. `Global providers` (e.g. theme provider, query client provider).
+
+
+### Purpose
+1. Centralize cross-cutting concerns that every part of the app can safely depend on.
+2. Keep “feature” code (like user/, orders/) separated from infrastructure-level code.
+3. Avoid circular dependencies — features can import from foundation, but foundation doesn’t import from features.
+
+### Short definition:
+foundation/ is where you put the core, low-level pieces that form the base of your application
+— styling, primitives, and utilities that everything else builds on.
+
+```mermaid
+flowchart TD
+    A[Configuration Provider<br/>Loads app-wide config] -->
+    B[Auth Provider<br/>Handles login state & tokens] -->
+    C[API Provider<br/>Sets up API client / fetch layer] -->
+    D[Settings Provider<br/>User preferences & toggles] -->
+    E[Features Provider<br/>Feature flags / experiments] -->
+    F[Styles Provider<br/>Theme, colors, typography] -->
+    G[Children<br/>Your actual app]
+```

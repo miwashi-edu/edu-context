@@ -1,4 +1,3 @@
-// ./src/context/AppProvider.jsx
 import { useEffect, useState } from "react";
 import StylesProvider from "./StylesProvider";
 import ConfigurationContext, { defaultConfig } from "./ConfigurationContext";

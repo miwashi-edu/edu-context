@@ -1,0 +1,73 @@
+# AnyComponent
+
+AnyComponent uses MyContext for useContext, and MyProvider for transfering the value.
+
+## Story
+
+The Story uses `render` to wrap `MyProvider` around, `children`, giving those children the ability to use `MyContext`.
+
+```jsx
+import {AnyComponent} from '.';
+import {MyProvider} from '../../context/MyContext.jsx'
+export default {
+    title: 'Components/AnyComponent',
+    component: AnyComponent,
+}
+
+export const Default = {
+    render: (args) => <>
+                <MyProvider {...args}>
+                    <AnyComponent {...args}/>
+                    <AnyComponent {...args}/>
+                </MyProvider>
+            </>,
+}
+```
+
+## MyContext.jsx
+
+`A Context` and `A Provider` are often both exported from a file named `A Context.jsx`, but sometimes they are separated into their own files,
+`MyContext` exports both `MyContext` and `MyProvider`.
+
+```jsx
+import React, { createContext, useState } from 'react';
+
+const MyContext = createContext();
+
+const MyProvider = ({ children }) => {
+    const [value, setValue] = useState('Off');
+
+    return (
+        <MyContext.Provider value={{ value, setValue }}>
+            {children}
+        </MyContext.Provider>
+    );
+};
+
+export { MyContext, MyProvider };
+```
+## AnyComponent
+
+Now `AnyComponent` can access and manipulate the state in `MyContext` using `useContext(MyContext)`.
+
+```jsx
+import React, { useContext } from 'react';
+import { MyContext } from '../../context/MyContext.jsx';
+
+const AnyComponent = () => {
+    const { value, setValue } = useContext(MyContext);
+
+    const toggleValue = () => {
+        setValue(value === 'On' ? 'Off' : 'On');
+    };
+
+    return (
+        <div>
+            <p>{value}</p>
+            <button onClick={toggleValue}>Toggle Value</button>
+        </div>
+    );
+};
+
+export default AnyComponent;
+```
