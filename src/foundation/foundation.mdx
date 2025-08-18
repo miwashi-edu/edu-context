@@ -1,3 +1,7 @@
+import Layers from '../components/AppProvider/Layers.jsx';
+
+# foundation
+
 In most React/FE project structures, a foundation/ **directory** is used for things that are `core building blocks` of the
 application — pieces that everything else depends on, but that don’t depend on higher-level “features.”
 
@@ -20,13 +24,8 @@ Think of it as the **base layer** in a layered architecture.
 foundation/ is where you put the core, low-level pieces that form the base of your application
 — styling, primitives, and utilities that everything else builds on.
 
-```mermaid
-flowchart TD
-    A[Configuration Provider<br/>Loads app-wide config] -->
-    B[Auth Provider<br/>Handles login state & tokens] -->
-    C[API Provider<br/>Sets up API client / fetch layer] -->
-    D[Settings Provider<br/>User preferences & toggles] -->
-    E[Features Provider<br/>Feature flags / experiments] -->
-    F[Styles Provider<br/>Theme, colors, typography] -->
-    G[Children<br/>Your actual app]
-```
+# AppProvider
+
+> The AppProvider will add many layers to the appliction.
+
+<Layers/>

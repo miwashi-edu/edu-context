@@ -25,6 +25,35 @@
     text-align: center;
 }
 
+/* Left arrow as a button (toggles expand/collapse) */
+.layerArrowButton {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Triangle indicators */
+.arrowClosed {
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 14px solid #9ca3af; /* ▶ points toward concern */
+}
+.arrowOpen {
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 14px solid #9ca3af; /* ◀ (open) */
+}
+
+/* (Legacy static triangle if needed elsewhere) */
 .layerArrow {
     align-self: center;
     width: 0;
@@ -34,6 +63,7 @@
     border-right: 16px solid #9ca3af;
 }
 
+/* Explanation panel (expanded) */
 .layerRight {
     flex: 1;
     padding: 12px 14px;
@@ -42,6 +72,33 @@
     background: #ffffff;
     color: #111827;
     line-height: 1.4;
+}
+
+/* Explanation panel (collapsed to icon) */
+.layerRightCollapsed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+}
+
+/* Info icon button inside collapsed panel */
+.infoIconButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: #111827;
+    cursor: pointer;
 }
 
 /* ▼ arrow under concern */
@@ -53,13 +110,25 @@
     border-top: 12px solid #9ca3af;
 }
 
-/* existing classes ... */
+/* Focus & hover states */
+.layerArrowButton:focus-visible,
+.infoIconButton:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+.infoIconButton:hover svg,
+.layerArrowButton:hover .arrowClosed,
+.layerArrowButton:hover .arrowOpen {
+    filter: brightness(0.85);
+}
 
+/* Markdown within explanation */
 .md :where(p) { margin: 0 0 0.5rem; }
 .md :where(ul,ol) { margin: 0.25rem 0 0.5rem 1.25rem; }
 .md :where(li) { margin: 0.125rem 0; }
 .md :where(strong) { font-weight: 600; }
 .md :where(a) { text-decoration: underline; }
+
 .codeInline {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     background: #f3f4f6;
